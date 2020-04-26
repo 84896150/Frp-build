@@ -29,18 +29,18 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        #sudo apt-get update
-        #sudo apt-get -y install bison ed gawk gcc libc6-dev make  
+        sudo apt-get update
+        sudo apt-get -y install bison ed gawk gcc libc6-dev make  
         go version        
         
     - name: Clone source code
       run: |
-        go get -v github.com/fatedier/frp
+        git clone --depth=1 https://github.com/fatedier/frp.git /home/runner/go/src/github.com/fatedier/frp
     - name: Build Firmware
       env:
         TNAME: K2P-5.0
       run: |
-        cd /usr/local/gopath/src/github.com/fatedier/frp/
+        cd /home/runner/go/src/github.com/fatedier/frp
         make -f Makefile.cross-compiles
     - name : Upload packages
       uses: actions/upload-artifact@master
