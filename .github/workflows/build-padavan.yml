@@ -35,7 +35,7 @@ jobs:
         
     - name: Clone source code
       run: |
-        go get github.com/fatedier/frp
+        go get -v github.com/fatedier/frp
     - name: Build Firmware
       env:
         TNAME: K2P-5.0
