@@ -43,9 +43,10 @@ jobs:
         cd /home/runner/go/src/github.com/fatedier/frp
         ls
         make -f Makefile.cross-compiles
+        sudo mv -f /home/runner/go/src/github.com/fatedier/frp/frp_0.32.1_linux_mipsle /opt/images/
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
       with:
         name: Frp-packages
-        path: /home/runner/go/src/github.com/fatedier/frp/bin
+        path: /opt/images/
