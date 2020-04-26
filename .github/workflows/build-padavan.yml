@@ -44,6 +44,7 @@ jobs:
         make
          ls -l
         tar -czvf myetc.tar.gz bin
+        mkdir -p /opt/images
         sudo mv -f /home/runner/go/src/github.com/fatedier/frp/myetc.tar.gz /opt/images/
     - name : Upload packages
       uses: actions/upload-artifact@master
