@@ -41,6 +41,7 @@ jobs:
         TNAME: K2P-5.0
       run: |
         cd /home/runner/go/src/github.com/fatedier/frp
+        ls
         make -f Makefile.cross-compiles
     - name : Upload packages
       uses: actions/upload-artifact@master
