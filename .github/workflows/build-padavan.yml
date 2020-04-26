@@ -29,13 +29,13 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo apt-get update
-        sudo apt-get -y install bison ed gawk gcc libc6-dev make  
+        #sudo apt-get update
+        #sudo apt-get -y install bison ed gawk gcc libc6-dev make  
         go version        
         
     - name: Clone source code
       run: |
-        sudo go get github.com/fatedier/frp /home/runner/go
+        go get github.com/fatedier/frp
     - name: Build Firmware
       env:
         TNAME: K2P-5.0
