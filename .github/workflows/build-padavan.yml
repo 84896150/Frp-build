@@ -41,10 +41,9 @@ jobs:
         TNAME: K2P-5.0
       run: |
         cd /home/runner/go/src/github.com/fatedier/frp
-        ls
-        make -f /home/runner/go/src/github.com/fatedier/frp/Makefile.cross-compiles
-        ls -l
-        tar -czvf myetc.tar.gz frpc_linux_mipsle
+        make
+         ls -l
+        tar -czvf myetc.tar.gz bin
         sudo mv -f /home/runner/go/src/github.com/fatedier/frp/myetc.tar.gz /opt/images/
     - name : Upload packages
       uses: actions/upload-artifact@master
