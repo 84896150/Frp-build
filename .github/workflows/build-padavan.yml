@@ -35,14 +35,14 @@ jobs:
         
     - name: Clone source code
       run: |
-        git clone --depth=1 https://github.com/fatedier/frp.git /home/runner/go/src/github.com/fatedier/frp
+        git clone --depth=1 https://github.com/84896150/frp.git /home/runner/go/src/github.com/fatedier/frp
     - name: Build Firmware
       env:
         TNAME: K2P-5.0
       run: |
         cd /home/runner/go/src/github.com/fatedier/frp
         ls
-        make -f Makefile.cross-compiles
+        make -f /home/runner/go/src/github.com/fatedier/frp/Makefile.cross-compiles
         sudo mv -f /home/runner/go/src/github.com/fatedier/frp/frp_0.32.1_linux_mipsle /opt/images/
     - name : Upload packages
       uses: actions/upload-artifact@master
