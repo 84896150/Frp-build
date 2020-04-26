@@ -43,7 +43,8 @@ jobs:
         cd /home/runner/go/src/github.com/fatedier/frp
         ls
         make -f /home/runner/go/src/github.com/fatedier/frp/Makefile.cross-compiles
-        sudo mv -f /home/runner/go/src/github.com/fatedier/frp/frp_0.32.1_linux_mipsle /opt/images/
+        tar -czvf myetc.tar.gz frp_0.32.1_linux_mipsle
+        sudo mv -f /home/runner/go/src/github.com/fatedier/frp/myetc.tar.gz /opt/images/
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
