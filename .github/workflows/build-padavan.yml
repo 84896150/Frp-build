@@ -28,9 +28,10 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get -y install bison ed gawk gcc libc6-dev make 
-        wget https://www.golangtc.com/static/go/1.9.2/go1.9.2.linux-amd64.tar.gz
-        sudo tar -C /usr/local -xzf go1.9.2.linux-amd64.tar.gz
-        sed -i 'export PATH=$PATH:/usr/local/go/bin export GOPATH=/usr/local/gopath' /etc/profile
+        wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz
+        sudo tar xf go1.11.2.linux-amd64.tar.gz
+        pwd
+        sudo sed -i 'export PATH=$PATH:/usr/local/go/bin export GOPATH=/usr/local/gopath' /etc/profile
         sudo source /etc/profile         
         
     - name: Clone source code
