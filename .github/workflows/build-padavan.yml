@@ -31,10 +31,10 @@ jobs:
         wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz
         sudo tar xf go1.11.2.linux-amd64.tar.gz
         pwd
-        sudo sed -i 'export PATH=$PATH:/usr/local/go/bin export GOPATH=/usr/local/gopath' .profile
+        sudo sed -i 'export PATH=$PATH:/usr/local/go/bin export GOPATH=/usr/local/gopath' /etc/profile
         cd go
         mkdir -p work
-        sudo source .profile
+        sudo source /etc/profile
         go version        
         
     - name: Clone source code
