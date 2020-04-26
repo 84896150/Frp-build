@@ -40,7 +40,8 @@ jobs:
       env:
         TNAME: K2P-5.0
       run: |
-      cd /usr/local/gopath/src/github.com/fatedier/frp/ make
+        cd /usr/local/gopath/src/github.com/fatedier/frp/
+        make -f Makefile.cross-compiles
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
