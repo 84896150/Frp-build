@@ -22,19 +22,15 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
+    - uses: actions/setup-go@v2
+      with:
+         go-version: '^1.13.1' # The Go version to download (if necessary) and use.
     - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo apt-get update
-        sudo apt-get -y install bison ed gawk gcc libc6-dev make 
-        wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz
-        sudo tar xf go1.11.2.linux-amd64.tar.gz
-        pwd
-        sudo sed -i 'export PATH=$PATH:/usr/local/go/bin export GOPATH=/usr/local/gopath' /etc/profile
-        cd go
-        mkdir -p work
-        sudo source /etc/profile
+        sudo apt-get -y install bison ed gawk gcc libc6-dev make  
         go version        
         
     - name: Clone source code
