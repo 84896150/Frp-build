@@ -27,33 +27,23 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo apt-get update
-        sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
-        cpio git python-docutils gettext automake autopoint texinfo build-essential help2man \
-        pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev gcc-multilib
+        sudo apt-get -y install bison ed gawk gcc libc6-dev make 
+        wget https://www.golangtc.com/static/go/1.9.2/go1.9.2.linux-amd64.tar.gz
+        sudo tar -C /usr/local -xzf go1.9.2.linux-amd64.tar.gz
+        sed -i 'export PATH=$PATH:/usr/local/go/bin export GOPATH=/usr/local/gopath' /etc/profile
+        sudo source /etc/profile         
+        
     - name: Clone source code
       run: |
-        git clone --depth=1 https://github.com/chongshengB/rt-n56u.git /opt/rt-n56u
-        cd /opt/rt-n56u/toolchain-mipsel
-        sh dl_toolchain.sh
-        mkdir -p /opt/images/
+        sudo go get github.com/fatedier/frp
     - name: Build Firmware
       env:
         TNAME: K2P-5.0
       run: |
-        cd /opt/rt-n56u/trunk
-        if [ ! -f configs/templates/$TNAME.config ] ; then
-        echo "configs/templates/$TNAME.config not found "
-        exit 1
-        fi
-        cp -f configs/templates/$TNAME.config .config
-        sed -i 's/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y/g' .config
-      
-        sudo ./clear_tree
-        sudo ./build_firmware_modify $TNAME 0
-        sudo mv -f images/*.trx /opt/images/
+      cd /usr/local/gopath/src/github.com/fatedier/frp/ make
     - name : Upload packages
       uses: actions/upload-artifact@master
       if: always()
       with:
-        name: Padavan-packages
+        name: Frp-packages
         path: /opt/images
