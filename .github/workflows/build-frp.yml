@@ -36,10 +36,12 @@ jobs:
           cd frp
           chmod u+x package.sh
           ./package.sh
-      - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v2
+          tar -czvf myetc.tar.gz release
+          
+      - name : Upload packages
+        uses: actions/upload-artifact@master
+        if: always()
         with:
-          version: latest
-          args: release --rm-dist --release-notes=./Release.md
-        env:
-          GITHUB_TOKEN: ${{ secrets.GPR_TOKEN }}
+          name: Frp-packages
+          path: /opt/images/
+      
