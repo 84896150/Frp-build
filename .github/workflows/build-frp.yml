@@ -14,8 +14,9 @@ on:
     types: [started]
 
 jobs:
-  build:
+  goreleaser:
     runs-on: ubuntu-latest
+    steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -26,10 +27,9 @@ jobs:
         with:
           go-version: 1.18
           
-      run: |
-        #git clone --depth=1 https://github.com/fatedier/frp.git /home/runner/go/src/github.com/fatedier/frp
-        git clone --depth=1 https://github.com/84896150/frp.git /home/runner/go/src/github.com/fatedier/frp
-        cp -f `which go` /usr/bin/go
+      - run: | 
+      git clone --depth=1 https://github.com/84896150/frp.git /home/runner/go/src/github.com/fatedier/frp
+      cp -f `which go` /usr/bin/go
     - name: Build Firmware
       env:
         TNAME: frp
