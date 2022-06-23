@@ -15,35 +15,32 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
-    if: github.event.repository.owner.id == github.event.sender.id
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@master
-    - uses: actions/setup-go@v2
-      with:
-         go-version: '^1.13.1' # The Go version to download (if necessary) and use.
-    - name: Initialization environment
-      env:
-        DEBIAN_FRONTEND: noninteractive
+    runs-on: ubuntu-latest
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0    
+    
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.18
+          
       run: |
-        sudo apt-get update
-        sudo apt-get -y install bison ed gawk gcc libc6-dev make       
-    - name: Clone source code
-      run: |
-        git clone --depth=1 https://github.com/fatedier/frp.git /home/runner/go/src/github.com/fatedier/frp
+        #git clone --depth=1 https://github.com/fatedier/frp.git /home/runner/go/src/github.com/fatedier/frp
+        git clone --depth=1 https://github.com/84896150/frp.git /home/runner/go/src/github.com/fatedier/frp
+        cp -f `which go` /usr/bin/go
     - name: Build Firmware
       env:
-        TNAME: K2P-5.0
+        TNAME: frp
       run: |
         cd /home/runner/go/src/github.com/fatedier/frp
+        #编译当前平台
         #make
         #ls -l
-        #ls -l /home/runner/go/src/github.com/fatedier/frp/bin
         #tar -czvf myetc.tar.gz bin
         make -f Makefile.cross-compiles
-        ls -l release
+        #ls -l release
         tar -czvf myetc.tar.gz release
         mkdir -p /opt/images
         sudo mv -f /home/runner/go/src/github.com/fatedier/frp/myetc.tar.gz /opt/images/
