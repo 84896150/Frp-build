@@ -36,8 +36,11 @@ jobs:
           cd frp
           chmod u+x package.sh
           ./package.sh
+          ls -l release
           tar -czvf myetc.tar.gz release
-          
+          pwd
+          mkdir -p /opt/images
+          sudo mv -f myetc.tar.gz /opt/images/
       - name : Upload packages
         uses: actions/upload-artifact@master
         if: always()
