@@ -32,6 +32,7 @@ jobs:
           pwd
           git clone --depth=1 https://github.com/84896150/frp.git
           ls -l
+          cd frp
           cp -f `which go` /usr/bin/go
       - name: Make All
         run: |
