@@ -43,7 +43,7 @@ jobs:
         ls -l /home/runner/go/src/github.com/fatedier/frp/bin
         tar -czvf myetc.tar.gz bin
         make -f Makefile.cross-compiles
-        ls -l
+        ls -l /home/runner/go/src/github.com/fatedier/frp/bin
         mkdir -p /opt/images
         sudo mv -f /home/runner/go/src/github.com/fatedier/frp/myetc.tar.gz /opt/images/
     - name : Upload packages
