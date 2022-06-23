@@ -30,15 +30,10 @@ jobs:
       - run: |
           # https://github.com/actions/setup-go/issues/107
           git clone --depth=1 https://github.com/84896150/frp.git
-          pwd
-          ls -l
-          cd frp
-          ls -l
           cp -f `which go` /usr/bin/go
       - name: Make All
         run: |
-          pwd
-          ls -l
+          cd frp
           chmod u+x package.sh
           ./package.sh
       - name: Run GoReleaser
