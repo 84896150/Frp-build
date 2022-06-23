@@ -31,7 +31,8 @@ jobs:
           # https://github.com/actions/setup-go/issues/107
           git clone --depth=1 https://github.com/84896150/frp.git
           pwd
-          cd /home/runner/work/Frp-build/Frp-build/frp
+          ls -l
+          cd frp
           ls -l
           cp -f `which go` /usr/bin/go
       - name: Make All
