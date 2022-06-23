@@ -35,6 +35,7 @@ jobs:
           cp -f `which go` /usr/bin/go
       - name: Make All
         run: |
+          ls -l
           chmod u+x package.sh
           ./package.sh
       - name: Run GoReleaser
