@@ -33,7 +33,7 @@ jobs:
           cp -f `which go` /usr/bin/go
       - name: Make All
         run: |
-          cd frp_wol
+          cd frp
           chmod u+x package.sh
           ./package.sh
           tar -czvf myetc.tar.gz release
