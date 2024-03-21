@@ -35,8 +35,10 @@ jobs:
       - name: Make All
         run: |
           cd frp
-          chmod u+x package.sh
-          ./package.sh
+          #chmod u+x package.sh
+          #./package.sh
+          make
+          ls
           tar -czvf myetc.tar.gz release
           mkdir -p /opt/images
           sudo mv -f /home/runner/work/Frp-build/Frp-build/frp/myetc.tar.gz /opt/images/
