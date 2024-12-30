@@ -39,9 +39,9 @@ jobs:
           chmod u+x package.sh
           ./package.sh
           ls -x
-          tar -czvf myetc.tar.gz release
+          # tar -czvf myetc.tar.gz release
           mkdir -p /opt/images
-          sudo mv -f /home/runner/work/Frp-build/Frp-build/frp/myetc.tar.gz /opt/images/
+          sudo mv -f /home/runner/work/Frp-build/Frp-build/frp/release/* /opt/images/
       - name : Upload packages
         uses: actions/upload-artifact@master
         if: always()
