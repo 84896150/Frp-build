@@ -40,12 +40,12 @@ jobs:
           ./package.sh
           ls -x
           # tar -czvf myetc.tar.gz release
-          mkdir -p /opt/images
-          sudo mv -f /home/runner/work/Frp-build/Frp-build/frp/release/* /opt/images/
+          # mkdir -p /opt/images
+          # sudo mv -f /home/runner/work/Frp-build/Frp-build/frp/release/* /opt/images/
       - name : Upload packages
         uses: actions/upload-artifact@master
         if: always()
         with:
           name: Frp-packages
-          path: /opt/images/
+          path: /home/runner/work/Frp-build/Frp-build/frp/release/
       
